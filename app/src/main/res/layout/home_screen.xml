@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+  <ImageView
+          android:layout_width="match_parent"
+          android:layout_height="140dp"
+          android:src="@drawable/icon_ad"
+          android:layout_marginTop="10dp">
+
+      </ImageView>
+
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="12dp"
+      android:text="Quotation"
+      android:textAlignment="center"
+      android:textSize="50sp">
+
+
+  </TextView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+      <Button
+          android:id="@+id/new_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_horizontal"
+          android:layout_marginTop="100dp"
+          android:onClick="onCreateDoc"
+          android:text="New"
+          android:layout_centerHorizontal="true"
+          android:textAlignment="center"
+          android:textSize="30dp">
+
+
+      </Button>
+
+      <Button
+          android:id="@+id/open_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerHorizontal="true"
+          android:layout_marginTop="50dp"
+          android:text="Open"
+          android:layout_below="@id/new_button"
+          android:textSize="30dp">
+
+      </Button>
+
+      <Button
+          android:id="@+id/exit_button"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_centerHorizontal="true"
+          android:layout_below="@id/open_button"
+          android:layout_marginTop="60dp"
+          android:text="Exit"
+          android:textSize="20dp">
+
+      </Button>
+
+
+    </RelativeLayout>
+
+
+
+
+</LinearLayout>
+
+
