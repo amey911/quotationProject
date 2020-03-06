@@ -5,9 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
-import android.provider.ContactsContract;
 import android.util.Log;
 
+import java.util.HashMap;
 import java.util.List;
 
 import static com.amey.quotationproject.DatabaseHelper.TABLE_NAME;
@@ -120,13 +120,30 @@ public class DBManager {
         return cursor;
     }
 
+ public HashMap<String, String> getUserData() {
+        HashMap<String, String> client = new HashMap<String, String>();
+        String opnSelect = "SELECT * FROM " + TABLE_NAME;
 
-//    public Cursor getOpenInfo() {
-//        String[] opnq = {}
-//    }
+       Cursor cursor = database.rawQuery(opnSelect, null);
 
-//    String[] item_columns = new String[]{DatabaseHelper.ITEM_NAME, DatabaseHelper.QUANTITY, DatabaseHelper.RATE};
-//    Cursor item_cursor = database.query(DatabaseHelper.ITEM_TABLE_NAME, item_columns, null, null, null, null, null);
+       cursor.moveToFirst();
+       if (cursor.getCount() > 0) {
+           client.put("name", cursor.getString(1));
+           client.put("location",cursor.getString(2));
+           client.put("contact", cursor.getString(3));
+           client.put("subject", cursor.getString(4));
+           client.put("room", cursor.getString(5));
+           client.put("email", cursor.getString(6));
+       }
+       cursor.close();
+       database.close();
+     Log.e("db", "getUserData: " + client.toString());
+       return client;
+ }
+
+
+
+
 
 
 }

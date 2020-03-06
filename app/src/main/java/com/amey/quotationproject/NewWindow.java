@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -197,13 +198,16 @@ public class NewWindow extends AppCompatActivity {
 
 
 
+
         final LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-
+        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(mRecyclerView.getContext(),
+                layoutManager.getOrientation());
 
         mRecyclerView.setLayoutManager(layoutManager);
 
+        mRecyclerView.addItemDecoration(dividerItemDecoration);
 
         mRecyclerView.setAdapter(mRecyclerAdapter);
 
