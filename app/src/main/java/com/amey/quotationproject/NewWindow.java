@@ -159,16 +159,7 @@ public class NewWindow extends AppCompatActivity {
     itemPOJO itemPOJO = new itemPOJO();
 
     totalPOJO totalPOJO = new totalPOJO();
-
-
-
-
-
-
-
-
-
-
+    private Context context;
 
 
     @Override
@@ -440,7 +431,6 @@ public class NewWindow extends AppCompatActivity {
 
 
 
-
                 if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
 
                     if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
@@ -493,11 +483,16 @@ public class NewWindow extends AppCompatActivity {
     private int savePdf() {
 
 
-        progressDialog = new ProgressDialog(NewWindow.this);
-        progressDialog.setMax(100);
-        progressDialog.setMessage("Exporting PDF...");
-        progressDialog.setTitle("Quotation");
-        progressDialog.show();
+//        progressDialog = new ProgressDialog(NewWindow.this);
+//        progressDialog.setMax(10000);
+//        progressDialog.setMessage("Exporting PDF...");
+//        progressDialog.setTitle("Quotation");
+//        progressDialog.show();
+//
+//
+//        progressDialog.hide();
+//        progressDialog.dismiss();
+
 
 
 
@@ -830,9 +825,6 @@ public class NewWindow extends AppCompatActivity {
 
 
 
-
-
-            progressDialog.dismiss();
 
 
             Toast.makeText(this, mFileName + ".pdf\n is saved to\n " + mFilePath, Toast.LENGTH_SHORT).show();
