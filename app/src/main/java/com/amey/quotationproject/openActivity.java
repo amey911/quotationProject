@@ -1,10 +1,13 @@
 package com.amey.quotationproject;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
 import android.annotation.SuppressLint;
 import android.database.Cursor;
@@ -13,6 +16,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
@@ -29,8 +34,7 @@ public class openActivity extends AppCompatActivity {
     RecyclerView.LayoutManager layoutManager;
 
     ArrayList<openData> opnData = new ArrayList<>();
-    String name = "", loc = "", contact ="", subject = "" , room = "", email = "";
-
+    String name = "", loc = "", contact = "", subject = "", room = "", email = "";
 
 
     @Override
@@ -57,6 +61,9 @@ public class openActivity extends AppCompatActivity {
 
         openRecView.setAdapter(openAdapter);
 
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+
+
 //        mRecyclerView.setAdapter(mRecyclerAdapter);
 
 
@@ -78,23 +85,43 @@ public class openActivity extends AppCompatActivity {
                 ));
             } while (cursor.moveToNext());
         }
-        Log.e("data", "data added to array open" +opnData);
+        Log.e("data", "data added to array open" + opnData);
 
 
-
-
-
-
-
-
-
-
-           openAdapter.notifyDataSetChanged();
-
+        openAdapter.notifyDataSetChanged();
+        ItemTouchHelper touchHelper = new ItemTouchHelper(simpleCallback);
+        touchHelper.attachToRecyclerView(openRecView);
 
     }
 
+    openData deleteditem = null;
 
+    ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+            int pos = viewHolder.getAdapterPosition();
+
+           switch (direction) {
+               case ItemTouchHelper.LEFT:
+                   if (opnData != null && pos >= 0 && pos < opnData.size())
+                       dbManager.delete(opnData.get(pos).getDocName());
+
+                   deleteditem = opnData.get(pos);
+                   Log.e("del", "onSwiped: "+deleteditem.toString() );
+
+                   opnData.remove(pos);
+                   openAdapter.notifyItemRemoved(pos);
+                   break;
+
+
+               case ItemTouchHelper.RIGHT:
+
+           }
 
 
 
@@ -106,6 +133,12 @@ public class openActivity extends AppCompatActivity {
 
 
         }
+
+
+
+    };
+
+}
 
 
 

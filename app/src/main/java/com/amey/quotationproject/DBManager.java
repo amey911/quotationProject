@@ -92,7 +92,8 @@ public class DBManager {
 
 
     public void delete(String c_name) {
-        database.delete(TABLE_NAME, DatabaseHelper.CLIENT_NAME + "=" + c_name, null);
+//        database.delete(TABLE_NAME, DatabaseHelper.CLIENT_NAME + "=" + c_name, null);
+        database.delete(TABLE_NAME, DatabaseHelper.CLIENT_NAME+"=?" , new String[]{c_name});
 
 
     }
@@ -115,6 +116,11 @@ public class DBManager {
         SQLiteDatabase database = dbHelper.getWritableDatabase();
 
             Cursor res = database.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+
+
+
+
+
             return res;
         }
     }
