@@ -1,6 +1,7 @@
 package com.amey.quotationproject;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -94,6 +95,10 @@ public openRecyclerAdapter(Context context, ArrayList<openData> list){
 //        return(null != openList?openList.size():0);
         return openData.size();
     }
+
+
+
+
 
 
 }

@@ -226,62 +226,8 @@ public class NewWindow extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
-
-        ItemTouchHelper.SimpleCallback simpleCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT ) {
-
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, int direction) {
-
-
-                final int position = viewHolder.getAdapterPosition();
-
-
-
-                myList.remove(position);
-                mRecyclerAdapter.notifyItemRemoved(position);
-
-
-
-
-                Snackbar snackbar = Snackbar
-                        .make(coordinatorLayout, "Item was removed from the list.", Snackbar.LENGTH_LONG);
-
-                snackbar.setAction("UNDO", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                   // myList.add(position);
-
-
-
-                    mRecyclerAdapter.notifyItemInserted(position);
-
-                    }
-                });
-
-                snackbar.show();
-
-
-            }
-        };
-
-
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(itemSwipeCallback);
         itemTouchHelper.attachToRecyclerView(mRecyclerView);
-
-
 
 
         dbManager = new DBManager(this);
@@ -325,7 +271,7 @@ public class NewWindow extends AppCompatActivity {
 
 
                 mRecyclerAdapter.notifyDataSetChanged();
-//                enableSwipeToDeleteAndUndo();
+
 
 
 
@@ -744,7 +690,7 @@ public class NewWindow extends AppCompatActivity {
 
 
 
-            //Paragraph ttltagcell = new Paragraph("Total");
+
             PdfPCell ttltagcell = new PdfPCell(new Phrase("TOTAL:"));
 
             ttltagcell.setHorizontalAlignment(ALIGN_RIGHT);
@@ -816,12 +762,6 @@ public class NewWindow extends AppCompatActivity {
 
 
 
-//
-//            Intent intentOpen = new Intent(Intent.ACTION_VIEW);
-//
-//            intentOpen.setDataAndType()
-//
-
 
 
 
@@ -837,6 +777,54 @@ public class NewWindow extends AppCompatActivity {
 return 0;
 
     }
+
+
+
+
+
+// SWIPE OPERATION ON ITEMS
+
+    RecyclerData delItem = null;
+
+    ItemTouchHelper.SimpleCallback itemSwipeCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int posi = viewHolder.getAdapterPosition();
+
+                delItem = myList.get(posi);
+
+            Log.e("item del", "onSwiped: item del" );
+
+            myList.remove(posi);
+            mRecyclerAdapter.notifyItemRemoved(posi);
+            Snackbar snackbar = Snackbar.make(coordinatorLayout, "Item was removed from the list.", Snackbar.LENGTH_LONG);
+
+                snackbar.setAction("UNDO", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                   myList.add(delItem);
+
+
+
+                   mRecyclerAdapter.notifyDataSetChanged();
+
+                    }
+                });
+
+                snackbar.show();
+
+
+
+        }
+    };
+
+
+
 
 
 
@@ -873,5 +861,16 @@ return 0;
 
         }
     }
+
+
+
+
+
+
+
+
+
+
+
 }
 

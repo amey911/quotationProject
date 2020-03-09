@@ -14,6 +14,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -61,7 +63,15 @@ public class openActivity extends AppCompatActivity {
 
         openRecView.setAdapter(openAdapter);
 
-        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+//        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
+
+
+
+//        (new RecyclerTouchListener(getActivity(), recyclerview, new RecyclerTouchListener.ClickListener()
+
+
+
+
 
 
 //        mRecyclerView.setAdapter(mRecyclerAdapter);
@@ -89,10 +99,28 @@ public class openActivity extends AppCompatActivity {
 
 
         openAdapter.notifyDataSetChanged();
+
         ItemTouchHelper touchHelper = new ItemTouchHelper(simpleCallback);
         touchHelper.attachToRecyclerView(openRecView);
 
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     openData deleteditem = null;
 
@@ -112,7 +140,7 @@ public class openActivity extends AppCompatActivity {
                        dbManager.delete(opnData.get(pos).getDocName());
 
                    deleteditem = opnData.get(pos);
-                   Log.e("del", "onSwiped: "+deleteditem.toString() );
+                   Log.e("del", "onSwiped: "+deleteditem );
 
                    opnData.remove(pos);
                    openAdapter.notifyItemRemoved(pos);
@@ -122,21 +150,23 @@ public class openActivity extends AppCompatActivity {
                case ItemTouchHelper.RIGHT:
 
            }
-
-
-
-
-
-
-
-
-
-
         }
 
-
-
     };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
 

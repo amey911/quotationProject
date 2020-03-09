@@ -126,37 +126,7 @@ public class DBManager {
     }
 
 
-//   public Cursor readAllData() {
-//        String selectquery = "SELECT * FROM " + TABLE_NAME;
-//
-//        Cursor cursor = null;
-//        if(database != null) {
-//            cursor = database.rawQuery(selectquery, null);
-//
-//        }
-//        return cursor;
-//    }
 
-// public HashMap<String, String> getUserData() {
-//        HashMap<String, String> client = new HashMap<String, String>();
-//        String opnSelect = "SELECT * FROM " + TABLE_NAME;
-//
-//       Cursor cursor = database.rawQuery(opnSelect, null);
-//
-//       cursor.moveToFirst();
-//       if (cursor.getCount() > 0) {
-//           client.put("name", cursor.getString(1));
-//           client.put("location",cursor.getString(2));
-//           client.put("contact", cursor.getString(3));
-//           client.put("subject", cursor.getString(4));
-//           client.put("room", cursor.getString(5));
-//           client.put("email", cursor.getString(6));
-//       }
-//       cursor.close();
-//       database.close();
-//     Log.e("db", "getUserData: " + client.toString());
-//       return client;
-// }
 
 
 
