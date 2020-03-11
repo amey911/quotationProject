@@ -2,138 +2,85 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/coordinator"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/coordinator">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="604dp"
         android:layout_marginBottom="100dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="Enter Item Details"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        >
-
-    </TextView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <EditText
-            android:id="@+id/etTitle"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
-            android:ems="10"
-            android:gravity="start|top"
-            android:hint="Item Name"
-            android:inputType="textMultiLine"
-            android:padding="10dp">
-
-        </EditText>
-
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-
-        <EditText
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:hint="Quantity"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="20dp"
-            android:id="@+id/etDesc"
-            android:layout_marginTop="2dp"
-            android:inputType="number"
-
-            >
-
-        </EditText>
-
-        <EditText
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:hint="Rate"
-            android:layout_centerInParent="true"
-            android:id="@+id/etAmount"
-            android:inputType="number"
-            >
-
-        </EditText>
-
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ADD ITEM"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="20dp"
-            android:id="@+id/btnAddItem"
-            >
-
-        </Button>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
 
-    </RelativeLayout>
+            </LinearLayout>
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Items Preview"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        android:paddingTop="10dp"
-        android:textStyle="bold">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:text="Items Preview"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold">
 
-    </TextView>
+            </TextView>
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="380dp"
-        android:layout_marginBottom="20dp"
-        android:nestedScrollingEnabled="true"
-        android:scrollbars="vertical">
-
-
-    </androidx.recyclerview.widget.RecyclerView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="478dp"
+                    android:layout_marginBottom="20dp"
+                    android:nestedScrollingEnabled="true"
+                    android:scrollbars="vertical">
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+                </androidx.recyclerview.widget.RecyclerView>
 
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/addBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|bottom"
+                    android:layout_margin="16dp"
+                    android:layout_marginBottom="50dp"
+                    android:paddingBottom="50dp"
+                    android:src="@drawable/add_item">
+
+                </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
 
-    </LinearLayout>
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+        </LinearLayout>
+
 
     </ScrollView>
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom">
+        android:layout_gravity="bottom"
+        android:paddingBottom="20dp">
 
         <Button
             android:layout_width="wrap_content"
@@ -157,7 +104,10 @@
         </Button>
 
 
+
+
     </RelativeLayout>
+
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -42,6 +42,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
@@ -76,7 +77,7 @@ import static com.itextpdf.text.Element.ALIGN_CENTER;
 import static com.itextpdf.text.Element.ALIGN_LEFT;
 import static com.itextpdf.text.Element.ALIGN_RIGHT;
 
-public class NewWindow extends AppCompatActivity {
+public class NewWindow extends AppCompatActivity implements AddDialog.AddDialogListener {
     private static final String MY_PREFS_NAME = "clientList";
 
 
@@ -135,7 +136,7 @@ public class NewWindow extends AppCompatActivity {
 
 
     EditText etTitle, etDesc, etAmount;
-    Button btnAddItem, savePdf, savedocbtn;
+    Button  savePdf, savedocbtn;
     ImageView img;
 
 
@@ -205,12 +206,9 @@ public class NewWindow extends AppCompatActivity {
 
 
 
+        FloatingActionButton btnAddItem = findViewById(R.id.addBtn);
 
-
-        etTitle = (EditText) findViewById(R.id.etTitle);
-        etDesc = (EditText) findViewById(R.id.etDesc);
-        etAmount = (EditText) findViewById(R.id.etAmount);
-        btnAddItem = (Button) findViewById(R.id.btnAddItem);
+//        btnAddItem = (Button) findViewById(R.id.addBtn);
         savePdf = (Button) findViewById(R.id.pdfbtn);
         savedocbtn = (Button) findViewById(R.id.savebtn);
 
@@ -248,37 +246,14 @@ public class NewWindow extends AppCompatActivity {
 
 
         btnAddItem.setOnClickListener(new View.OnClickListener() {
-
-
             @Override
             public void onClick(View v) {
-                title = etTitle.getText().toString();
-                 desc = etDesc.getText().toString();
-                amount = etAmount.getText().toString();
 
-
-                RecyclerData mLog = new RecyclerData();
-                mLog.setTitle(title);
-                mLog.setDescription(desc);
-                mLog.setAmount(amount);
-
-                myList.add(mLog);
-
-//
-                etTitle.setText("");
-                etDesc.setText("");
-                etAmount.setText("");
-
-
-                mRecyclerAdapter.notifyDataSetChanged();
-
-
-
-
-
+                openItemDialog();
             }
-
         });
+
+
 
 
 // SAVE IN DATABASE:::::::::::::::::
@@ -399,23 +374,36 @@ public class NewWindow extends AppCompatActivity {
         });
 
     }
-//    private void runAnimationAgain() {
-//
-//        final LayoutAnimationController controller =
-//                AnimationUtils.loadLayoutAnimation(this, animationList[i]);
-//
-//        mRecyclerView.setLayoutAnimation(controller);
-//        mRecyclerAdapter.notifyDataSetChanged();
-//        mRecyclerView.scheduleLayoutAnimation();
-//
-//    }
-//
+
+
+
+    private void openItemDialog() {
+        AddDialog addDialog = new AddDialog();
+        addDialog.show(getSupportFragmentManager(), "Add Item");
+    }
+
+
+    @Override
+    public void applyText(String itemName, String itmQty, String itmRate) {
+
+        RecyclerData mLog = new RecyclerData();
+        mLog.setTitle(itemName);
+        mLog.setDescription(itmQty);
+        mLog.setAmount(itmRate);
+
+        myList.add(mLog);
+
+
+
+        mRecyclerAdapter.notifyDataSetChanged();
 
 
 
 
 
 
+
+    }
 
 
 
@@ -861,14 +849,6 @@ return 0;
 
         }
     }
-
-
-
-
-
-
-
-
 
 
 
