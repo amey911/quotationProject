@@ -13,9 +13,10 @@
         android:roundIcon="@mipmap/ad_icon_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
-        <activity android:label="@string/app_name" android:name=".openActivity"/>
+        <activity android:name=".displaySavedActivity"></activity>
+        <activity
+            android:name=".openActivity"
+            android:label="@string/app_name" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

@@ -77,7 +77,7 @@ import static com.itextpdf.text.Element.ALIGN_CENTER;
 import static com.itextpdf.text.Element.ALIGN_LEFT;
 import static com.itextpdf.text.Element.ALIGN_RIGHT;
 
-public class NewWindow extends AppCompatActivity implements AddDialog.AddDialogListener {
+public class NewWindow extends AppCompatActivity implements AddDialog.AddDialogListener, RecyclerAdapter.OnClickItem {
     private static final String MY_PREFS_NAME = "clientList";
 
 
@@ -184,7 +184,7 @@ public class NewWindow extends AppCompatActivity implements AddDialog.AddDialogL
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
-        mRecyclerAdapter =  new RecyclerAdapter(myList);
+        mRecyclerAdapter =  new RecyclerAdapter(myList, this);
 
 
 
@@ -215,7 +215,7 @@ public class NewWindow extends AppCompatActivity implements AddDialog.AddDialogL
         coordinatorLayout = findViewById(R.id.coordinator);
 
 
-        mRecyclerAdapter = new RecyclerAdapter(myList);
+        mRecyclerAdapter = new RecyclerAdapter(myList, this);
 
 
 
@@ -397,17 +397,19 @@ public class NewWindow extends AppCompatActivity implements AddDialog.AddDialogL
 
         mRecyclerAdapter.notifyDataSetChanged();
 
+    }
 
+// _________________________________________________________________ on item click ______________________________________________**
 
-
+    @Override
+    public void onClickItem(int pos) {
+        myList.get(pos);
+//        Intent itemIntent = new Intent(this, displaySavedActivity.class);
+//        startActivity(itemIntent);
 
 
 
     }
-
-
-
-
 
 
 

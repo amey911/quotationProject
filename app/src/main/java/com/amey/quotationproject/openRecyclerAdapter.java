@@ -16,12 +16,10 @@ import java.util.ArrayList;
 public class openRecyclerAdapter extends RecyclerView.Adapter<openRecyclerAdapter.ViewHolder> {
 
    ArrayList<openData> openData = new ArrayList<>();
-   openRecyclerAdapter(ArrayList<openData> openData) {
-       this.openData = openData;
-   }
 
     private Context context;
 
+    private onOpnClick mOnOpnClick;
 
 
 
@@ -32,21 +30,31 @@ public class openRecyclerAdapter extends RecyclerView.Adapter<openRecyclerAdapte
 
 
 public openRecyclerAdapter(Context context, ArrayList<openData> list){
-    openData= list;
+    this.openData= list;
+
 }
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
 
         private TextView openName;
         private TextView openLoc;
+        onOpnClick onOpnClick;
 
 
-        public ViewHolder(@NonNull View itemView) {
+        public  ViewHolder(@NonNull View itemView, onOpnClick onOpnClick)  {
             super(itemView);
             openName = itemView.findViewById(R.id.open_proj_name);
             openLoc = itemView.findViewById(R.id.open_proj_loc);
 
+            this.onOpnClick = onOpnClick;
 
+            itemView.setOnClickListener(this);
+        }
+
+
+        @Override
+        public void onClick(View v) {
+            onOpnClick.onOpnClick(getAdapterPosition());
         }
     }
 
@@ -56,9 +64,9 @@ public openRecyclerAdapter(Context context, ArrayList<openData> list){
     public openRecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View openView = LayoutInflater.from(parent.getContext()).inflate(R.layout.open_window_row, parent, false);
 
-        ViewHolder openHolder = new ViewHolder(openView);
+        ViewHolder openHolder = new ViewHolder(openView, mOnOpnClick);
 
-        return new ViewHolder(openView);
+        return openHolder;
     }
 
 
@@ -79,15 +87,6 @@ public openRecyclerAdapter(Context context, ArrayList<openData> list){
             holder.openLoc.setText(openData.get(position).getDocLoc());
 
 
-//        holder.openName.setText(String.valueOf(opn_name.get(position)));
-//        holder.openName.setText(String.valueOf(opn_loc.get(position)));
-
-        //        if (openList != null){
-//
-//            holder.openName.setText(openList.get(position).getDocName());
-//            holder.openLoc.setText(openList.get(position).getDocLoc());
-//
-//        }
     }
 
     @Override
@@ -99,6 +98,8 @@ public openRecyclerAdapter(Context context, ArrayList<openData> list){
 
 
 
-
+public interface onOpnClick{
+    void onOpnClick(int position);
+}
 
 }

@@ -17,6 +17,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     private ArrayList<RecyclerData> myList;
 
+    private OnClickItem mOnClickItem;
+
     int mLastposition = 0;
 
 
@@ -24,8 +26,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
 
 
-    public RecyclerAdapter(ArrayList<RecyclerData> myList){
+    public RecyclerAdapter(ArrayList<RecyclerData> myList, OnClickItem onClickItem){
         this.myList = myList;
+        this.mOnClickItem = onClickItem;
 
     }
 
@@ -35,23 +38,28 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.items_row, parent, false);
 
-        ViewHolder holder = new ViewHolder(view);
+        ViewHolder holder = new ViewHolder(view, mOnClickItem );
         return  holder;
+
+
+
     }
 
 
 
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView etTitleTextView;
         private TextView etDescView;
         private TextView etAmountView;
 
+        OnClickItem onClickItem;
 
 
-        public ViewHolder(@NonNull View itemView) {
+
+        public ViewHolder(@NonNull View itemView, OnClickItem onClickItem) {
             super(itemView);
 
 
@@ -61,12 +69,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
             etAmountView = itemView.findViewById(R.id.txtAmount);
 
+            this.onClickItem = onClickItem;
+
+
+            itemView.setOnClickListener(this);
 
         }
 
 
-
-
+        @Override
+        public void onClick(View v) {
+            onClickItem.onClickItem(getAdapterPosition());
+        }
     }
 
     @Override
@@ -78,7 +92,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             holder.etTitleTextView.setText(myList.get(position).getTitle());
             holder.etDescView.setText(myList.get(position).getDescription());
             holder.etAmountView.setText(myList.get(position).getAmount());
+
+
+
         }
+
+
 
 
 
@@ -95,7 +114,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
 
 
+public interface OnClickItem{
+        void onClickItem(int pos);
 
+}
 
 
 

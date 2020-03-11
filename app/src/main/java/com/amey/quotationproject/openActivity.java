@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -25,7 +26,7 @@ import java.util.ArrayList;
 
 import static com.amey.quotationproject.DatabaseHelper.TABLE_NAME;
 
-public class openActivity extends AppCompatActivity {
+public class openActivity extends AppCompatActivity implements openRecyclerAdapter.onOpnClick {
 
     private DatabaseHelper databaseHelper;
     private SQLiteDatabase database;
@@ -37,6 +38,7 @@ public class openActivity extends AppCompatActivity {
 
     ArrayList<openData> opnData = new ArrayList<>();
     String name = "", loc = "", contact = "", subject = "", room = "", email = "";
+    private openData openData;
 
 
     @Override
@@ -155,19 +157,14 @@ public class openActivity extends AppCompatActivity {
     };
 
 
+    @Override
+    public void onOpnClick(int position) {
+        opnData.get(position);
+//        Intent opnIntent = new Intent(this, asdasda.class);
+//        startActivity(opnIntent);
 
-
-
-
-
-
-
-
-
-
-
-
-
+        Log.e("opnitem", "onOpnClick: clicked open item" );
+    }
 }
 
 
