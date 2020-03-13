@@ -15,7 +15,9 @@ import java.util.ArrayList;
 
 public class openRecyclerAdapter extends RecyclerView.Adapter<openRecyclerAdapter.ViewHolder> {
 
-   ArrayList<openData> openData = new ArrayList<>();
+//   ArrayList<openData> openData = new ArrayList<>();
+
+    private ArrayList<openData> opnData;
 
     private Context context;
 
@@ -29,8 +31,9 @@ public class openRecyclerAdapter extends RecyclerView.Adapter<openRecyclerAdapte
 //    private ArrayList opn_name, opn_loc;
 
 
-public openRecyclerAdapter(Context context, ArrayList<openData> list){
-    this.openData= list;
+public openRecyclerAdapter(ArrayList<openData> opnData, onOpnClick onOpnClick){
+    this.opnData= opnData;
+    this.mOnOpnClick = onOpnClick;
 
 }
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -78,13 +81,13 @@ public openRecyclerAdapter(Context context, ArrayList<openData> list){
     @Override
     public void onBindViewHolder(@NonNull openRecyclerAdapter.ViewHolder holder, int position) {
 
-        Log.d("onBindViewHolder: ", openData.size() + "");
+        Log.d("onBindViewHolder: ", opnData.size() + "");
 //        holder.itemView.setTag(openData.get(position));   for click fucntion
 
-            openData opndata = openData.get(position);
+            openData opndata = opnData.get(position);
 
-            holder.openName.setText(openData.get(position).getDocName());
-            holder.openLoc.setText(openData.get(position).getDocLoc());
+            holder.openName.setText(opnData.get(position).getDocName());
+            holder.openLoc.setText(opnData.get(position).getDocLoc());
 
 
     }
@@ -92,7 +95,7 @@ public openRecyclerAdapter(Context context, ArrayList<openData> list){
     @Override
     public int getItemCount() {
 //        return(null != openList?openList.size():0);
-        return openData.size();
+        return opnData.size();
     }
 
 

@@ -61,7 +61,7 @@ public class openActivity extends AppCompatActivity implements openRecyclerAdapt
                 layoutManager.getOrientation());
         openRecView.addItemDecoration(dividerItemDecoration);
 
-        openAdapter = new openRecyclerAdapter(this, opnData);
+        openAdapter = new openRecyclerAdapter(opnData, this);
 
         openRecView.setAdapter(openAdapter);
 
@@ -157,11 +157,21 @@ public class openActivity extends AppCompatActivity implements openRecyclerAdapt
     };
 
 
+
+    // ON OPEN CLICK ______________________________________________________
+
     @Override
     public void onOpnClick(int position) {
         opnData.get(position);
 //        Intent opnIntent = new Intent(this, asdasda.class);
 //        startActivity(opnIntent);
+
+//        AddDialog addDialog = new AddDialog();
+//        addDialog.show(getSupportFragmentManager(), "Details");
+
+        OpnDisplayDialog opnDisplayDialog = new OpnDisplayDialog();
+        opnDisplayDialog.show(getSupportFragmentManager(), "Details");
+
 
         Log.e("opnitem", "onOpnClick: clicked open item" );
     }

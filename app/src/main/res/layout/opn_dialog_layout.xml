@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Client Name Here"
+        android:id="@+id/opn_dialog_client_name">
+        
+    </TextView>
+    
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Location Here"
+        android:id="@+id/opn_dialog_client_loc"
+        android:layout_below="@+id/opn_dialog_client_name">
+        
+    </TextView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Number Here"
+        android:id="@+id/opn_dialog_client_contact"
+        android:layout_below="@+id/opn_dialog_client_loc">
+
+    </TextView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Subject Here"
+        android:id="@+id/opn_dialog_client_subject"
+        android:layout_below="@+id/opn_dialog_client_contact">
+
+    </TextView>
+
+
+
+</RelativeLayout>

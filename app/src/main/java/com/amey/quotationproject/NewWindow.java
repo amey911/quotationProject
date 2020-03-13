@@ -399,12 +399,40 @@ public class NewWindow extends AppCompatActivity implements AddDialog.AddDialogL
 
     }
 
+
+
+
+
+
+
+
+    private void openEditDialog() {
+        AddDialog addDialog = new AddDialog();
+        addDialog.show(getSupportFragmentManager(), "Add Item");
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
 // _________________________________________________________________ on item click ______________________________________________**
 
     @Override
     public void onClickItem(int pos) {
         myList.get(pos);
-//        Intent itemIntent = new Intent(this, displaySavedActivity.class);
+
+        openItemDialog();
+
+
+        //        Intent itemIntent = new Intent(this, displaySavedActivity.class);
 //        startActivity(itemIntent);
 
 
