@@ -627,7 +627,7 @@ public class NewWindow extends AppCompatActivity implements AddDialog.AddDialogL
 
 
 
-                String mTitle = myList.get(i).getTitle();
+                String mTitle = i+1+ ". " +myList.get(i).getTitle();
                 String mQty = myList.get(i).getDescription();
                 String mAmount = myList.get(i).getAmount();
 
