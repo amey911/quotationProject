@@ -1,5 +1,6 @@
 package com.amey.quotationproject;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -83,13 +84,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
         Log.d("onBindViewHolder: ", myList.size() + "");
+            int t = position+1;
 
         if(myList !=null) {
-            holder.etTitleTextView.setText(myList.get(position).getTitle());
+
+                holder.etTitleTextView.setText(t  + ". " + myList.get(position).getTitle());
+
+
             holder.etDescView.setText(myList.get(position).getDescription());
             holder.etAmountView.setText(myList.get(position).getAmount());
 

@@ -10,7 +10,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
 
-      <EditText
+      <AutoCompleteTextView
           android:layout_width="match_parent"
           android:layout_height="80dp"
           android:hint="Enter Item Name"
@@ -18,7 +18,8 @@
           android:gravity="top"
           android:id="@+id/et_item_name">
 
-      </EditText>
+      </AutoCompleteTextView>
+
 
 
 
@@ -58,6 +59,7 @@
 
 
     </RelativeLayout>
+
 
 
 

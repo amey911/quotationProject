@@ -1,5 +1,6 @@
 package com.amey.quotationproject;
 
+import android.R.layout;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -7,6 +8,8 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
@@ -14,15 +17,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatDialogFragment;
 
 
-
-
 public class AddDialog extends AppCompatDialogFragment {
 
-    private EditText edit_itemName;
+    private AutoCompleteTextView edit_itemName;
     private EditText edit_itemQty;
     private EditText edit_itemRate;
 
     private AddDialogListener listener;
+
+
 
     @NonNull
     @Override
@@ -49,9 +52,19 @@ public class AddDialog extends AppCompatDialogFragment {
             }
         });
 
-        edit_itemName = view.findViewById(R.id.et_item_name);
+
+
+        String[] items = getResources().getStringArray(R.array.item_contents_array);
+        ArrayAdapter<String> itemAdapter = new ArrayAdapter<String>(getActivity(), layout.simple_list_item_1, items);
+
+
+
+        edit_itemName =  view.findViewById(R.id.et_item_name);
         edit_itemQty = view.findViewById(R.id.et_qty);
         edit_itemRate = view.findViewById(R.id.et_rate);
+
+        edit_itemName.setAdapter(itemAdapter);
+
 
 
         return builder.create();

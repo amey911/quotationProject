@@ -2,4 +2,36 @@
     <string name="app_name">quotationProject</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
+
+
+    <string-array name="item_contents_array">
+        <item>Commercial ply decorative wall paneling at main door entrance.</item>
+        <item>Semi marine decorative safety door without grill.</item>
+        <item>Commercial ply Decorative unit at kitchen partition wall.</item>
+        <item>MDF CNC Design placing at kitchen partition including DUCO PAINT.</item>
+        <item>Royal painting at living room to passage and kitchen celling.</item>
+        <item>Commercial ply crockery unit fixing above service platform.</item>
+        <item>Marine ply shutter fixing with wooden frame for kitchen platform and service platform.</item>
+        <item>Gypsum celling at kitchen for pipe.</item>
+        <item>Commercial ply wardrobe with openable doors at bed side.</item>
+        <item>Commercial ply Side wall unit fixing with openable door above wardrobe at loft level.</item>
+        <item>Commercial ply box type bed with cupsar.</item>
+        <item>Decorative gypsum celling.</item>
+        <item>Royal painting at living room to passage and kitchen celling.</item>
+        <item>Commercial ply wardrobe with openable doors</item>
+        <item>Commercial ply Side wall unit fixing with open able door above wardrobe at loft level. </item>
+        <item>EXTRA ELECTRICAL POINTS (APPROX). </item>
+    </string-array>
+
+    <string-array name="Notes_array">
+      <item> Plumbing fixtures / Hardware (door latch, handles, fittings etc.)/Electrical fixtures (lamps/ fan, regulators ext.) Provided by client.</item>
+
+        <item>Electrical main line shifting/ changing, M.C.B. Fixing charges extra. </item>
+
+        <item>Lamination basic rate 1200/00 per sheet. </item>
+
+        <item>We will require 7 days to start the work after issue of work order.</item>
+    </string-array>
+
+
 </resources>
