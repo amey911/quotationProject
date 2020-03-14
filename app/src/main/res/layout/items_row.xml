@@ -1,100 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
 
-    <RelativeLayout
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+     android:layout_height="wrap_content"
+    android:layout_width="wrap_content">
+
+
+
+
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="5dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/dash"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="4dp"
-            android:text="-"
-            android:textSize="20sp">
-
-        </TextView>
-
-
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/dash"
-            android:padding="4dp"
-            android:text="item name here"
-            android:id="@+id/txtTitle"
-            android:textStyle="bold"
-            android:textSize="20sp">
+            android:padding="5dp">
 
-        </TextView>
+            <TextView
+                android:id="@+id/dash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                android:text="-"
+                android:textSize="20sp">
+
+            </TextView>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/dash"
+                android:padding="4dp"
+                android:text="item name here"
+                android:id="@+id/txtTitle"
+                android:textStyle="bold"
+                android:textSize="20sp">
+
+            </TextView>
 
 
 
 
-    </RelativeLayout>
+        </RelativeLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:padding="5dp">
-        <TextView
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Quantity :"
-            android:padding="4dp"
-            android:id="@+id/qtyTag"
-            android:textSize="20sp">
+            android:layout_marginTop="5dp"
+            android:padding="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantity :"
+                android:padding="4dp"
+                android:id="@+id/qtyTag"
+                android:textSize="20sp">
 
-        </TextView>
+            </TextView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="qty here"
-            android:layout_toRightOf="@id/qtyTag"
-            android:padding="4dp"
-            android:id="@+id/txtDesc"
-            android:textSize="20sp"
-            >
-        </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="qty here"
+                android:layout_toRightOf="@id/qtyTag"
+                android:padding="4dp"
+                android:id="@+id/txtDesc"
+                android:textSize="20sp"
+                >
+            </TextView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Rate :"
-            android:layout_toRightOf="@id/txtDesc"
-            android:padding="4dp"
-            android:layout_marginLeft="60dp"
-            android:id="@+id/rateTag"
-            android:textSize="20sp"
-            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rate :"
+                android:layout_toRightOf="@id/txtDesc"
+                android:padding="4dp"
+                android:layout_marginLeft="60dp"
+                android:id="@+id/rateTag"
+                android:textSize="20sp"
+                >
 
-        </TextView>
+            </TextView>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="rate here"
-            android:layout_toRightOf="@id/rateTag"
-            android:padding="4dp"
-            android:textSize="20sp"
-            android:id="@+id/txtAmount"
-           >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="rate here"
+                android:layout_toRightOf="@id/rateTag"
+                android:padding="4dp"
+                android:textSize="20sp"
+                android:id="@+id/txtAmount"
+                >
 
-        </TextView>
-
-
-
-
-
-    </RelativeLayout>
-
+            </TextView>
 
 
 
-</LinearLayout>
+
+
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

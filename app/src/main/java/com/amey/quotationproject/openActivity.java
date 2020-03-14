@@ -65,24 +65,23 @@ public class openActivity extends AppCompatActivity implements openRecyclerAdapt
 
         openRecView.setAdapter(openAdapter);
 
-//        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(simpleCallback);
-
-
-
-//        (new RecyclerTouchListener(getActivity(), recyclerview, new RecyclerTouchListener.ClickListener()
 
 
 
 
 
 
-//        mRecyclerView.setAdapter(mRecyclerAdapter);
+
+
+
+
+
 
 
         dbManager = new DBManager(this);
         dbManager.open();
 
-//        viewAll();
+
 
         Cursor cursor = dbManager.getAllData();
 
