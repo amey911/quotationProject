@@ -24,6 +24,7 @@ import android.text.Layout;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
@@ -211,8 +212,6 @@ public class NewWindow extends AppCompatActivity implements AddDialog.AddDialogL
         FloatingActionButton btnAddItem = findViewById(R.id.addBtn);
 
 //        btnAddItem = (Button) findViewById(R.id.addBtn);
-        savePdf = (Button) findViewById(R.id.pdfbtn);
-        savedocbtn = (Button) findViewById(R.id.savebtn);
 
         coordinatorLayout = findViewById(R.id.coordinator);
 
@@ -257,123 +256,6 @@ public class NewWindow extends AppCompatActivity implements AddDialog.AddDialogL
 
 
 
-
-// SAVE IN DATABASE:::::::::::::::::
-
-        savedocbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-                SharedPreferences result = getSharedPreferences("clientList", MODE_PRIVATE);
-
-                String projName = result.getString("clientName","");
-                String projLoc = result.getString("clientLoc", "");
-                String projSubject = result.getString("clientSub","Quotation for interior work");
-                String projContact = result.getString("clientContact", "");
-                String projRoom = result.getString("clientRoom", "");
-                String projEmail = result.getString("clientEmail", "");
-
-                Log.e("#Secure Get Data", "client info to database"+projName);
-
-
-
-                final String dbname = projName;
-                final String dblocation =projLoc;
-                final String dbcontact = projContact;
-                final String dbsubject = projSubject;
-                final String dbroom = projRoom;
-                final String  dbemail = projEmail;
-
-
-                dbManager.insert(dbname, dblocation,dbcontact,dbsubject,dbroom,dbemail);
-
-                Log.e("db", "client info added to database ");
-
-
-
-
-
-
-
-
-
-
-
-
-
-                for (int i = 0; i < myList.size(); i++){
-                     String mItem = myList.get(i).getTitle();
-                     String mQty = myList.get(i).getDescription();
-                     String mAmt = myList.get(i).getAmount();
-
-                     final String db_item_name = mItem;
-                     final String db_item_qty = mQty;
-                     final String db_item_rate = mAmt;
-
-
-
-
-                     dbManager.insertItems(db_item_name,db_item_qty,db_item_rate);
-
-                    Toast.makeText(
-                            NewWindow.this,
-                            "database created.",
-                            Toast.LENGTH_LONG
-                    ).show();
-
-                }
-
-
-
-
-
-            }
-        });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        savePdf.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-
-
-                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
-
-                    if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                        String permissions[] = {(Manifest.permission.WRITE_EXTERNAL_STORAGE)};
-                        requestPermissions(permissions, STORAGE_CODE);
-                    } else {
-                        // permision already granted
-                        savePdf();
-                    }
-
-                } else {
-                    // system os < marshmellow .. runtime permision
-                    savePdf();
-                }
-
-
-
-
-            }
-        });
 
     }
 
@@ -844,12 +726,125 @@ return 0;
     };
 
 
+
+  //MENU ITEMS _______________________________________________________________________
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.doc_menu, menu);
 
         return true;
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.menu_item_save:
+
+
+
+                SharedPreferences result = getSharedPreferences("clientList", MODE_PRIVATE);
+
+                String projName = result.getString("clientName","");
+                String projLoc = result.getString("clientLoc", "");
+                String projSubject = result.getString("clientSub","Quotation for interior work");
+                String projContact = result.getString("clientContact", "");
+                String projRoom = result.getString("clientRoom", "");
+                String projEmail = result.getString("clientEmail", "");
+
+                Log.e("#Secure Get Data", "client info to database"+projName);
+
+
+
+                final String dbname = projName;
+                final String dblocation =projLoc;
+                final String dbcontact = projContact;
+                final String dbsubject = projSubject;
+                final String dbroom = projRoom;
+                final String  dbemail = projEmail;
+
+
+                dbManager.insert(dbname, dblocation,dbcontact,dbsubject,dbroom,dbemail);
+
+                Log.e("db", "client info added to database ");
+
+
+
+
+
+
+
+
+
+
+
+
+
+                for (int i = 0; i < myList.size(); i++){
+                    String mItem = myList.get(i).getTitle();
+                    String mQty = myList.get(i).getDescription();
+                    String mAmt = myList.get(i).getAmount();
+
+                    final String db_item_name = mItem;
+                    final String db_item_qty = mQty;
+                    final String db_item_rate = mAmt;
+
+
+
+
+                    dbManager.insertItems(db_item_name,db_item_qty,db_item_rate);
+
+                    Toast.makeText(
+                            NewWindow.this,
+                            "added to database.",
+                            Toast.LENGTH_SHORT
+                    ).show();
+
+                }
+
+
+
+
+                return true;
+
+            case R.id.menu_item_export:
+
+
+
+
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.M) {
+
+                    if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
+                        String permissions[] = {(Manifest.permission.WRITE_EXTERNAL_STORAGE)};
+                        requestPermissions(permissions, STORAGE_CODE);
+                    } else {
+                        // permision already granted
+                        savePdf();
+                    }
+
+                } else {
+                    // system os < marshmellow .. runtime permision
+                    savePdf();
+                }
+
+
+
+
+
+                return true;
+
+
+        }
+
+
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
