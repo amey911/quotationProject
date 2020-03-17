@@ -80,7 +80,7 @@ import static com.itextpdf.text.Element.ALIGN_CENTER;
 import static com.itextpdf.text.Element.ALIGN_LEFT;
 import static com.itextpdf.text.Element.ALIGN_RIGHT;
 
-public class NewWindow extends AppCompatActivity implements AddDialog.AddDialogListener, RecyclerAdapter.OnClickItem {
+public class NewWindow extends AppCompatActivity implements AddDialog.AddDialogListener, EditDialog.EditDialogListener, RecyclerAdapter.OnClickItem {
     private static final String MY_PREFS_NAME = "clientList";
 
 
@@ -290,11 +290,6 @@ public class NewWindow extends AppCompatActivity implements AddDialog.AddDialogL
 
 
 
-    private void openEditDialog() {
-        AddDialog addDialog = new AddDialog();
-        addDialog.show(getSupportFragmentManager(), "Add Item");
-    }
-
 
 
 
@@ -313,16 +308,59 @@ public class NewWindow extends AppCompatActivity implements AddDialog.AddDialogL
     public void onClickItem(int pos) {
         myList.get(pos);
 
-        openItemDialog();
 
 
-        //        Intent itemIntent = new Intent(this, displaySavedActivity.class);
-//        startActivity(itemIntent);
+//        itemEditDialog();
+
+        EditDialog editDialog = new EditDialog();
+        editDialog.show(getSupportFragmentManager(), "Edit Item");
+
+
+
+
+
+//        myList.remove(pos);
+//
+//        mRecyclerAdapter.notifyItemRemoved(pos);
+
 
 
 
     }
 
+
+
+//    private void itemEditDialog() {
+//
+//        EditDialog editDialog = new EditDialog();
+//        editDialog.show(getSupportFragmentManager(), "Edit Item");
+//
+//
+//
+//    }
+
+
+
+    @Override
+    public void applyEditItemText(String itemName, String itmQty, String itmRate) {
+
+        RecyclerData mLog = new RecyclerData();
+
+
+
+        mLog.setTitle(itemName);
+        mLog.setDescription(itmQty);
+        mLog.setAmount(itmRate);
+
+        myList.add(mLog);
+
+
+
+
+
+        mRecyclerAdapter.notifyDataSetChanged();
+
+    }
 
 
 

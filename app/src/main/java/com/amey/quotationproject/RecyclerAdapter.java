@@ -121,7 +121,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
 
 public interface OnClickItem{
-        void onClickItem(int pos);
+    void applyEditItemText(String itemName, String itmQty, String itmRate);
+
+    void onClickItem(int pos);
 
 }
 

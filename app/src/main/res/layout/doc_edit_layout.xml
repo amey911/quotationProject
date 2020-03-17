@@ -63,7 +63,8 @@
         android:layout_margin="26dp"
         android:layout_marginBottom="50dp"
         android:paddingBottom="50dp"
-        android:src="@drawable/add_item">
+        android:src="@drawable/add_item"
+        >
 
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
