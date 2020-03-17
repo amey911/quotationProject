@@ -185,7 +185,7 @@ public class NewWindow extends AppCompatActivity implements AddDialog.AddDialogL
 
 
 
-        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView = findViewById(R.id.recycler_view);
 
         mRecyclerAdapter =  new RecyclerAdapter(myList, this);
 
@@ -356,11 +356,69 @@ public class NewWindow extends AppCompatActivity implements AddDialog.AddDialogL
 
 
 
-
+//        contentPreviewListAdapter.notifyItemInserted(position);
 
         mRecyclerAdapter.notifyDataSetChanged();
 
     }
+
+
+
+
+
+
+
+
+
+// SWIPE OPERATION ON ITEMS
+
+    RecyclerData delItem = null;
+
+    ItemTouchHelper.SimpleCallback itemSwipeCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
+        @Override
+        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+            return false;
+        }
+
+        @Override
+        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int posi = viewHolder.getAdapterPosition();
+
+                delItem = myList.get(posi);
+
+            Log.e("item del", "onSwiped: item del" );
+
+            myList.remove(posi);
+            mRecyclerAdapter.notifyItemRemoved(posi);
+            Snackbar snackbar = Snackbar.make(coordinatorLayout, "Item was removed from the list.", Snackbar.LENGTH_LONG);
+
+                snackbar.setAction("UNDO", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                   myList.add(delItem);
+
+
+
+                   mRecyclerAdapter.notifyDataSetChanged();
+
+                    }
+                });
+
+                snackbar.show();
+
+
+
+        }
+    };
+
+
+
+
+
+
+
+
+
 
 
 
@@ -642,7 +700,7 @@ public class NewWindow extends AppCompatActivity implements AddDialog.AddDialogL
 
 
 
-           // PdfPCell totaltagcell = new PdfPCell(new Phrase("Total"));
+            // PdfPCell totaltagcell = new PdfPCell(new Phrase("Total"));
             PdfPCell totalcell = new PdfPCell(new Phrase("₹" +sum + " /-"));
 
 
@@ -714,7 +772,7 @@ public class NewWindow extends AppCompatActivity implements AddDialog.AddDialogL
 
         }
 
-return 0;
+        return 0;
 
     }
 
@@ -722,50 +780,17 @@ return 0;
 
 
 
-// SWIPE OPERATION ON ITEMS
-
-    RecyclerData delItem = null;
-
-    ItemTouchHelper.SimpleCallback itemSwipeCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT) {
-        @Override
-        public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-            return false;
-        }
-
-        @Override
-        public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-                int posi = viewHolder.getAdapterPosition();
-
-                delItem = myList.get(posi);
-
-            Log.e("item del", "onSwiped: item del" );
-
-            myList.remove(posi);
-            mRecyclerAdapter.notifyItemRemoved(posi);
-            Snackbar snackbar = Snackbar.make(coordinatorLayout, "Item was removed from the list.", Snackbar.LENGTH_LONG);
-
-                snackbar.setAction("UNDO", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                   myList.add(delItem);
 
 
 
-                   mRecyclerAdapter.notifyDataSetChanged();
-
-                    }
-                });
-
-                snackbar.show();
 
 
 
-        }
-    };
 
 
 
-  //MENU ITEMS _______________________________________________________________________
+
+    //MENU ITEMS _______________________________________________________________________
 
 
 
@@ -819,11 +844,6 @@ return 0;
 
 
 
-
-
-
-
-
                 for (int i = 0; i < myList.size(); i++){
                     String mItem = myList.get(i).getTitle();
                     String mQty = myList.get(i).getDescription();
@@ -852,7 +872,6 @@ return 0;
                 return true;
 
             case R.id.menu_item_export:
-
 
 
 
