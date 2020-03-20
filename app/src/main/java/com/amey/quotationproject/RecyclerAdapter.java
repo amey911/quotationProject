@@ -92,9 +92,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             int t = position+1;
 
         if(myList !=null) {
-
-                holder.etTitleTextView.setText(t  + ". " + myList.get(position).getTitle());
-
+            holder.etTitleTextView.setText(t  + ". " + myList.get(position).getTitle());
 
             holder.etDescView.setText(myList.get(position).getDescription());
             holder.etAmountView.setText(myList.get(position).getAmount());

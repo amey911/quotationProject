@@ -509,7 +509,7 @@ public class NewWindow extends AppCompatActivity implements AddDialog.AddDialogL
             mDoc.add(image);
 
 
-            String dispdate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+            String dispdate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
 
 
             Paragraph date = new Paragraph("Date: " + dispdate, FontFactory.getFont(String.valueOf(smallBold)));
